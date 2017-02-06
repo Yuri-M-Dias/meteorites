@@ -1,0 +1,65 @@
+---
+title: "Dados sobre quedas de meteoritos"
+author: "Yuri Matheus Dias Pereira"
+date: "19/12/2016"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Dados utilizados
+
+Foram utilizados dados do portal de dados abertos da NASA. Os dados consistem nos
+meteoritos encontrados no mundo todo, catalogados e classificados. Eles começam 
+com uma entrada em 861 DC, e possuem dados até 2013. São 38115 meteoritos catalogados,
+cada um com o local onde foram encontrados e dados associados, como massa, classe
+e elemento químico mais prevalente. [Fonte dos dados](https://data.nasa.gov/Space-Science/Meteorite-Landings/gh4g-9sfh)
+
+Também foram utilizados dados geográficos de um plot mundial com as marcações 
+dos países na resolução de 50m. [Fonte dos dados](http://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/)
+
+## Tratamento
+
+Os dados estão em formato json, na pasta data sob o nome de *meteoriteDate.json*.
+Json é um formato bastante comum em aplicações web, sendo preferido sobre XML por
+sua legibilidade e economia de espaço. Os dados estão organizados em _"meta"_ e _"data"_.
+A parte de _meta_ contém os metadados dos dados na parte de _data_, como os nomes
+e tipos de valores dos dados, bem como algumas simples estatísticas como os maiores 
+valores, os valores mais comuns e etc.
+
+Esses metadados são importantes para ajudar a entender os dados finais, e me ajudaram
+a entender os dados disponíveis e também foram utilizados para conseguir transformar
+os dados lidos em um data frame do R. Mais especificamente, foram utilizados para
+inserir os nomes nas tabelas corretamente.
+
+Os dados precisaram ser tratados em uma função que realiza bastante coisas, utilizando
+de outras funções menores como *sapply* e *names* para inserir os nomes das colunas 
+corretamente.
+
+# Plots
+
+## Localização dos meteoritos no globo
+
+Plot da localização geral dos meteoritos encontrados pelo globo, todos
+maiores que 1kg
+
+![Primeiro plot](plots/plot1.pdf)
+<br/>
+
+## Classes mais comuns de meteoritos
+
+Aqui os meteoritos foram agrupados pela sua classe, pegando as dez classes mais
+comuns de meteoritos encontrados
+
+![Segundo plot](plots/plot2.pdf)
+<br/>
+
+## Regressão realizados sobre o número de meteoritos encontrados desde 1985 até 2012
+
+Esse foi o plot para a tarefa 3 da disciplina, que agrupa os meteoritos encontrados
+de 1985 até 2012, e os normaliza utilizando a escala logarítmica na base 10
+
+![Terceiro plot](plots/plot3.pdf)
+<br/>
